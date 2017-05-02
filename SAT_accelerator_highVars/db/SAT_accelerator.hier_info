@@ -1,0 +1,73 @@
+|SAT_accelerator_top
+outCNF << SAT_accelerator:U2.outCNF
+clk => clk.IN2
+resetN => resetN.IN1
+stateVal[0] => stateVal[0].IN1
+stateVal[1] => stateVal[1].IN1
+varPos1[0] => varPos1[0].IN1
+varPos1[1] => varPos1[1].IN1
+varPos1[2] => varPos1[2].IN1
+varPos1[3] => varPos1[3].IN1
+varPos1[4] => varPos1[4].IN1
+varPos2[0] => varPos2[0].IN1
+varPos2[1] => varPos2[1].IN1
+varPos2[2] => varPos2[2].IN1
+varPos2[3] => varPos2[3].IN1
+varPos2[4] => varPos2[4].IN1
+negCtrl1 => negCtrl1.IN1
+negCtrl2 => negCtrl2.IN1
+
+
+|SAT_accelerator_top|SAT_synchronizer:U1
+ResetN_Clause <= ResetN_Clause.DB_MAX_OUTPUT_PORT_TYPE
+ResetN_CNF <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Clause_En <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+CNF_En <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+clk => state[0].CLK
+clk => state[1].CLK
+resetN => state[0].ACLR
+resetN => state[1].ACLR
+stateVal[0] => state[0].DATAIN
+stateVal[1] => state[1].DATAIN
+
+
+|SAT_accelerator_top|SAT_accelerator:U2
+outCNF <= outCNF~reg0.DB_MAX_OUTPUT_PORT_TYPE
+clk => outCNF~reg0.CLK
+clk => clauseOut.CLK
+resetClause => clauseOut.ACLR
+negCtrl[0] => inORgate[0].OUTPUTSELECT
+negCtrl[1] => inORgate[1].OUTPUTSELECT
+negCtrl[2] => inORgate[2].OUTPUTSELECT
+negCtrl[3] => inORgate[3].OUTPUTSELECT
+negCtrl[4] => inORgate[4].OUTPUTSELECT
+negCtrl[5] => inORgate[5].OUTPUTSELECT
+enableClause => clauseOut.ENA
+varPos[0][0] => Mux0.IN19
+varPos[0][1] => Mux0.IN18
+varPos[0][2] => Mux0.IN17
+varPos[0][3] => Mux0.IN16
+varPos[1][0] => Mux1.IN19
+varPos[1][1] => Mux1.IN18
+varPos[1][2] => Mux1.IN17
+varPos[1][3] => Mux1.IN16
+varPos[2][0] => Mux2.IN19
+varPos[2][1] => Mux2.IN18
+varPos[2][2] => Mux2.IN17
+varPos[2][3] => Mux2.IN16
+varPos[3][0] => Mux3.IN19
+varPos[3][1] => Mux3.IN18
+varPos[3][2] => Mux3.IN17
+varPos[3][3] => Mux3.IN16
+varPos[4][0] => Mux4.IN19
+varPos[4][1] => Mux4.IN18
+varPos[4][2] => Mux4.IN17
+varPos[4][3] => Mux4.IN16
+varPos[5][0] => Mux5.IN19
+varPos[5][1] => Mux5.IN18
+varPos[5][2] => Mux5.IN17
+varPos[5][3] => Mux5.IN16
+resetCNF => outCNF~reg0.PRESET
+enableCNF => outCNF~reg0.ENA
+
+
